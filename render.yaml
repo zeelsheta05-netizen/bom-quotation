@@ -1,0 +1,20 @@
+# Render blueprint (free plan): Render dashboard > New + > Blueprint > select this repo.
+# Free instances sleep after ~15 min idle (first visit then takes ~1 min) and their disk
+# is reset on every deploy or restart, so saved quotes and settings are not permanent.
+services:
+  - type: web
+    name: bom-quotation
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: BOM_AI_PROVIDER
+        value: gemini
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: BOM_USERNAME
+        value: team
+      - key: BOM_PASSWORD
+        sync: false
+      - key: BOM_TRIAL_CREDITS
+        value: "500"
